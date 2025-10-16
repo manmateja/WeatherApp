@@ -13,6 +13,10 @@ This app allows users to check the current weather for a given city. It fetches 
 *   Shows a corresponding weather icon.
 *   Caches the last searched weather information for offline viewing.
 
+Screenshot:
+<img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/3529c98c-36a5-4da2-beac-fcd33f7028dd" />
+
+
 ## Technologies Used
 
 *   **UI:** Jetpack Compose for building the user interface.

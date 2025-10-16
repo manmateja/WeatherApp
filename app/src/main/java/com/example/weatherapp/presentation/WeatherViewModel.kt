@@ -31,15 +31,22 @@ class WeatherViewModel @Inject constructor(
 
     fun fetchWeather(apiKey: String) {
         val city = _uiState.value.cityQuery
-        if (city.isBlank()) return
+        if (city.isBlank()) {
+            _uiState.value = _uiState.value.copy(error = "City name cannot be empty")
+            return
+        }
 
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true, error = null)
             val result = repo.getWeather(city, apiKey)
-            _uiState.value = if (result != null) {
-                _uiState.value.copy(isLoading = false, weather = result)
-            } else {
-                _uiState.value.copy(isLoading = false, error = "No data found")
+
+            result.onSuccess { weather ->
+                _uiState.value = _uiState.value.copy(isLoading = false, weather = weather)
+            }.onFailure { throwable ->
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false,
+                    error = throwable.localizedMessage ?: "Unknown error"
+                )
             }
         }
     }

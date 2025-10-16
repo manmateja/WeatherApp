@@ -1,5 +1,7 @@
 package com.example.weatherapp.presentation
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.local.WeatherEntity
@@ -50,4 +52,10 @@ class WeatherViewModel @Inject constructor(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun WeatherScreenPreview() {
+    WeatherScreen(apiKey = "test")
 }
